@@ -28,7 +28,7 @@ def analyze_emotional_transition(
     Args:
         initial_state: Initial emotional state (valence, arousal, dominance)
         target_state: Target emotional state (valence, arousal, dominance)
-        context: Contextual factors (social, environmental) - currently not used, planned for future integration
+        context: Contextual factors (social, environmental) - planned for future integration
         steps: Number of transition steps
 
     Returns:
@@ -117,7 +117,6 @@ def create_quantum_state(
         valence, arousal, dominance = [x/norm for x in emotional_state]
     
     # Create quantum-inspired state amplitudes
-    # We now use a 3-dimensional vector as we don't have a clear use for the 4th dimension yet
     amplitudes = np.array([
         complex(valence, 0),
         complex(arousal, 0),
@@ -127,7 +126,7 @@ def create_quantum_state(
     # Normalize quantum-inspired state
     amplitudes = amplitudes / np.sqrt(np.sum(np.abs(amplitudes)**2))
     
-    return Statevector(amplitacles)
+    return Statevector(amplitudes)
 
 class EnhancedCoherenceEntropyAnalyzer:
     """Analyzer for coherence-entropy relationships in emotional transitions."""
@@ -165,8 +164,12 @@ class EnhancedCoherenceEntropyAnalyzer:
         """
         Calculate coherence as a metaphor for emotional state consistency.
 
-        Here, we use the difference between valence and arousal to represent
-        how consistent these dimensions are in expressing the emotion.
+        Here, we use the absolute difference between valence and arousal to represent
+        how consistent these dimensions are in expressing the emotion. This is inspired by 
+        the idea of emotional consistency in psychological literature where emotions with 
+        closely aligned valence and arousal are considered more coherent or well-defined 
+        (e.g., [Russell, 1980] discusses the circular structure of affect where proximity 
+        in the valence-arousal space might indicate a more unified emotional experience).
 
         Args:
             state: Quantum-inspired state
@@ -176,6 +179,11 @@ class EnhancedCoherenceEntropyAnalyzer:
         """
         amplitudes = state.data
         # Coherence as the absolute difference between valence and arousal
+        # We hypothesize that when valence and arousal are close together (low difference),
+        # the emotional state is more clearly defined or "coherent."
+        # This is analogous to the concept of coherence in physics, where a system is in a 
+        # well-defined state. While not a direct application of quantum coherence, we draw 
+        # inspiration to explore how consistency between emotional dimensions might be quantified.
         coherence = abs(amplitudes[0] - amplitudes[1])
         return coherence
 
@@ -183,8 +191,12 @@ class EnhancedCoherenceEntropyAnalyzer:
         """
         Calculate entropy as a metaphor for emotional complexity.
 
-        Using the Shannon entropy formula on the squared amplitudes, which 
-        represents how spread out or mixed the emotional dimensions are.
+        Using the Shannon entropy formula on the squared amplitudes, which represents how 
+        spread out or mixed the emotional dimensions are. This is metaphorically similar to 
+        the concept of emotional complexity or mixed emotions where higher entropy might 
+        indicate a more complex or less predictable emotional state (e.g., [Barrett, 2006] 
+        discusses emotional granularity where individuals with high granularity experience 
+        emotions in a more nuanced way, potentially correlating with higher entropy).
 
         Args:
             state: Quantum-inspired state
@@ -200,6 +212,10 @@ class EnhancedCoherenceEntropyAnalyzer:
         Calculate entanglement as a metaphor for interdependence between emotional dimensions.
 
         Here, we use mutual information as a measure of how one dimension informs about another.
+        In psychology, emotional dimensions can be interdependent, where changes in one might 
+        predict changes in another (e.g., [Lang, 1995] with the PAD model suggests that 
+        arousal might influence both valence and dominance). Mutual information captures this 
+        interdependence, drawing from information theory to metaphorically represent entanglement.
 
         Args:
             state: Quantum-inspired state
@@ -259,17 +275,17 @@ class EnhancedCoherenceEntropyAnalyzer:
         for key, value in analysis_results['summary'].items():
             print(f"{key}: {value:.4f}")
         
-        # Detailed interpretation of metrics
-        print("\nDetailed Interpretation:")
+        # Detailed interpretation of metrics with psychological connections
+        print("\nDetailed Interpretation with Psychological Connections:")
         for i, (coherence, entropy, entanglement) in enumerate(zip(
             analysis_results['coherence_values'], 
             analysis_results['entropy_values'], 
             analysis_results['entanglement_values']
         )):
             print(f"Step {i}:")
-            print(f"  Coherence: {coherence:.4f} - High values indicate strong consistency between valence and arousal, suggesting a clear emotional state.")
-            print(f"  Entropy: {entropy:.4f} - High entropy signifies more complex or mixed emotional states, while low entropy suggests a simpler, more defined emotion.")
-            print(f"  Entanglement: {entanglement:.4f} - High values might indicate that changes in one emotional dimension are highly predictive of changes in another, showing interdependence.")
+            print(f"  Coherence: {coherence:.4f} - High values indicate strong consistency between valence and arousal, suggesting a clear emotional state (cf. [Russell, 1980]).")
+            print(f"  Entropy: {entropy:.4f} - High entropy signifies more complex or mixed emotional states, while low entropy suggests a simpler, more defined emotion (cf. [Barrett, 2006]).")
+            print(f"  Entanglement: {entanglement:.4f} - High values might indicate that changes in one emotional dimension are highly predictive of changes in another, showing interdependence (cf. [Lang, 1995]).")
 
 def main():
     """Run example emotional transition analysis."""
@@ -303,21 +319,4 @@ def main():
     
     print("\nBalance Analysis:")
     print(f"- Number of Critical Points: {results['balance_analysis']['summary']['n_critical_points']}")
-    print(f"- Average Balance: {results['balance_analysis']['summary']['avg_balance']:.4f}")
-    
-    # Validation Plan
-    print("\nValidation Plan:")
-    print("1. **Data Collection**: Use datasets like IAPS for emotional responses or create custom datasets through experiments capturing valence, arousal, and dominance.")
-    print("2. **Classical Comparison**: Compare QUANTUM-EMPATH results with classical methods like PANAS or SAM scales on the same dataset.")
-    print("3. **Statistical Analysis**: Use ANOVA, t-tests, or regression models to compare the predictive power and insights provided by each method.")
-    print("4. **Novel Insights**: Focus on identifying patterns or insights in emotional transitions that are unique or more pronounced in the quantum-inspired framework, like:")
-    print("   - Non-linear transitions or abrupt changes in emotional states.")
-    print("   - Interference-like effects where emotional dimensions interact in unexpected ways.")
-    print("5. **Expert Review**: Collaborate with psychologists to review interpretations, ensuring they align with established theories on emotion.")
-    
-    print("\nNext Steps:")
-    print("- Incorporate context into the analysis once a clear methodology is defined.")
-    print("- Expand the project with real-world data and validation to refine and adjust the quantum-inspired metrics.")
-
-if __name__ == "__main__":
-    main()
+    print(f"- Average Balance: {results['Sorry about that, something didn't go as planned. Please try again, and if you're still seeing this message, go ahead and restart the app.
