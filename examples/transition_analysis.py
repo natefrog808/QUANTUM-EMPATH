@@ -2,6 +2,8 @@ from typing import List, Tuple, Dict
 import numpy as np
 from qiskit.quantum_info import Statevector
 from scipy.stats import entropy
+from sklearn.metrics import mutual_info_score
+import matplotlib.pyplot as plt
 
 from quantum_empath.analyzers import (
     EnhancedCoherenceEntropyAnalyzer,
@@ -26,7 +28,7 @@ def analyze_emotional_transition(
     Args:
         initial_state: Initial emotional state (valence, arousal, dominance)
         target_state: Target emotional state (valence, arousal, dominance)
-        context: Contextual factors (social, environmental)
+        context: Contextual factors (social, environmental) - currently not used, planned for future integration
         steps: Number of transition steps
 
     Returns:
@@ -115,25 +117,166 @@ def create_quantum_state(
         valence, arousal, dominance = [x/norm for x in emotional_state]
     
     # Create quantum-inspired state amplitudes
-    # Here, we use a 4-dimensional vector to include a placeholder for potential future dimensions
+    # We now use a 3-dimensional vector as we don't have a clear use for the 4th dimension yet
     amplitudes = np.array([
         complex(valence, 0),
         complex(arousal, 0),
-        complex(dominance, 0),
-        complex(0, 0)  # Placeholder for additional dimension or context
+        complex(dominance, 0)
     ])
     
     # Normalize quantum-inspired state
     amplitudes = amplitudes / np.sqrt(np.sum(np.abs(amplitudes)**2))
     
-    return Statevector(amplitudes)
+    return Statevector(amplitacles)
+
+class EnhancedCoherenceEntropyAnalyzer:
+    """Analyzer for coherence-entropy relationships in emotional transitions."""
+    
+    def analyze_transition(self, state_history: List[Statevector]) -> Dict[str, Any]:
+        """
+        Analyzes coherence-entropy relationships during emotional transition.
+        
+        Args:
+            state_history: List of quantum-inspired states during transition
+            
+        Returns:
+            Dictionary containing coherence-entropy analysis
+        """
+        coherence_values = []
+        entropy_values = []
+        entanglement_values = []
+        for state in state_history:
+            coherence = self.calculate_coherence(state)
+            entropy = self.calculate_entropy(state)
+            entanglement = self.calculate_entanglement(state)
+            
+            coherence_values.append(coherence)
+            entropy_values.append(entropy)
+            entanglement_values.append(entanglement)
+        
+        return {
+            'coherence_values': coherence_values,
+            'entropy_values': entropy_values,
+            'entanglement_values': entanglement_values,
+            'summary': self._generate_summary(coherence_values, entropy_values, entanglement_values)
+        }
+    
+    def calculate_coherence(self, state: Statevector) -> float:
+        """
+        Calculate coherence as a metaphor for emotional state consistency.
+
+        Here, we use the difference between valence and arousal to represent
+        how consistent these dimensions are in expressing the emotion.
+
+        Args:
+            state: Quantum-inspired state
+
+        Returns:
+            Float representing emotional coherence (consistency)
+        """
+        amplitudes = state.data
+        # Coherence as the absolute difference between valence and arousal
+        coherence = abs(amplitudes[0] - amplitudes[1])
+        return coherence
+
+    def calculate_entropy(self, state: Statevector) -> float:
+        """
+        Calculate entropy as a metaphor for emotional complexity.
+
+        Using the Shannon entropy formula on the squared amplitudes, which 
+        represents how spread out or mixed the emotional dimensions are.
+
+        Args:
+            state: Quantum-inspired state
+
+        Returns:
+            Float representing emotional entropy (complexity)
+        """
+        probs = np.abs(state.data)**2
+        return entropy(probs, base=2)
+
+    def calculate_entanglement(self, state: Statevector) -> float:
+        """
+        Calculate entanglement as a metaphor for interdependence between emotional dimensions.
+
+        Here, we use mutual information as a measure of how one dimension informs about another.
+
+        Args:
+            state: Quantum-inspired state
+
+        Returns:
+            Float representing emotional entanglement (interdependence)
+        """
+        valence, arousal, dominance = np.abs(state.data)
+        return mutual_info_score([valence, arousal], [arousal, dominance])
+
+    def _generate_summary(self, coherence_values: List[float], entropy_values: List[float], entanglement_values: List[float]) -> Dict[str, float]:
+        """Generates summary statistics of coherence-entropy-entanglement analysis."""
+        return {
+            'max_coherence': max(coherence_values),
+            'min_entropy': min(entropy_values),
+            'max_entanglement': max(entanglement_values),
+            'mean_coherence': np.mean(coherence_values),
+            'mean_entropy': np.mean(entropy_values),
+            'mean_entanglement': np.mean(entanglement_values)
+        }
+
+    def visualize_analysis(self, analysis_results: Dict[str, Any]) -> None:
+        """Visualizes coherence-entropy analysis results."""
+        steps = range(len(analysis_results['coherence_values']))
+        
+        fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 15))
+        
+        # Coherence Evolution
+        ax1.plot(steps, analysis_results['coherence_values'], 'b-', label='Coherence')
+        ax1.set_title('Coherence (Emotional Consistency) Evolution')
+        ax1.set_xlabel('Transition Step')
+        ax1.set_ylabel('Coherence')
+        ax1.legend()
+        ax1.grid(True)
+        
+        # Entropy Evolution
+        ax2.plot(steps, analysis_results['entropy_values'], 'r--', label='Entropy')
+        ax2.set_title('Entropy (Emotional Complexity) Evolution')
+        ax2.set_xlabel('Transition Step')
+        ax2.set_ylabel('Entropy')
+        ax2.legend()
+        ax2.grid(True)
+        
+        # Entanglement Evolution
+        ax3.plot(steps, analysis_results['entanglement_values'], 'g-', label='Entanglement')
+        ax3.set_title('Entanglement (Emotional Interdependence) Evolution')
+        ax3.set_xlabel('Transition Step')
+        ax3.set_ylabel('Entanglement')
+        ax3.legend()
+        ax3.grid(True)
+        
+        plt.tight_layout()
+        plt.show()
+        
+        # Print analysis summary
+        print("\nCoherence-Entropy-Entanglement Analysis Summary:")
+        for key, value in analysis_results['summary'].items():
+            print(f"{key}: {value:.4f}")
+        
+        # Detailed interpretation of metrics
+        print("\nDetailed Interpretation:")
+        for i, (coherence, entropy, entanglement) in enumerate(zip(
+            analysis_results['coherence_values'], 
+            analysis_results['entropy_values'], 
+            analysis_results['entanglement_values']
+        )):
+            print(f"Step {i}:")
+            print(f"  Coherence: {coherence:.4f} - High values indicate strong consistency between valence and arousal, suggesting a clear emotional state.")
+            print(f"  Entropy: {entropy:.4f} - High entropy signifies more complex or mixed emotional states, while low entropy suggests a simpler, more defined emotion.")
+            print(f"  Entanglement: {entanglement:.4f} - High values might indicate that changes in one emotional dimension are highly predictive of changes in another, showing interdependence.")
 
 def main():
     """Run example emotional transition analysis."""
     # Define emotional states
     initial_state = (0.8, 0.6, 0.4)  # Happiness
     target_state = (-0.7, 0.2, -0.5)  # Sadness
-    context = (-0.5, 0.0)  # Social context negative, environmental neutral
+    context = (-0.5, 0.0)  # Social context negative, environmental neutral - not currently used
     
     print("Analyzing Emotional Transition")
     print(f"Initial State: {initial_state}")
@@ -161,6 +304,20 @@ def main():
     print("\nBalance Analysis:")
     print(f"- Number of Critical Points: {results['balance_analysis']['summary']['n_critical_points']}")
     print(f"- Average Balance: {results['balance_analysis']['summary']['avg_balance']:.4f}")
+    
+    # Validation Plan
+    print("\nValidation Plan:")
+    print("1. **Data Collection**: Use datasets like IAPS for emotional responses or create custom datasets through experiments capturing valence, arousal, and dominance.")
+    print("2. **Classical Comparison**: Compare QUANTUM-EMPATH results with classical methods like PANAS or SAM scales on the same dataset.")
+    print("3. **Statistical Analysis**: Use ANOVA, t-tests, or regression models to compare the predictive power and insights provided by each method.")
+    print("4. **Novel Insights**: Focus on identifying patterns or insights in emotional transitions that are unique or more pronounced in the quantum-inspired framework, like:")
+    print("   - Non-linear transitions or abrupt changes in emotional states.")
+    print("   - Interference-like effects where emotional dimensions interact in unexpected ways.")
+    print("5. **Expert Review**: Collaborate with psychologists to review interpretations, ensuring they align with established theories on emotion.")
+    
+    print("\nNext Steps:")
+    print("- Incorporate context into the analysis once a clear methodology is defined.")
+    print("- Expand the project with real-world data and validation to refine and adjust the quantum-inspired metrics.")
 
 if __name__ == "__main__":
     main()
