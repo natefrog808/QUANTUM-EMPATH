@@ -16,8 +16,10 @@ class QuantumSignatureAnalyzer:
         Performs detailed analysis of quantum-inspired signatures during emotional transition.
         
         This analysis draws inspiration from quantum mechanics to explore emotional dynamics,
-        focusing on how different emotional dimensions might interact or evolve over time.
-        
+        focusing on how different emotional dimensions might interact or evolve over time. By 
+        using quantum concepts metaphorically, we aim to capture unique aspects of emotional 
+        transitions that might not be evident through classical analysis.
+
         Args:
             state_history: List of quantum-inspired states during transition
             
@@ -187,9 +189,9 @@ class QuantumSignatureAnalyzer:
         ax1 = fig.add_subplot(321)
         coherence = [data['coherence'] for data in signature_data]
         entropy = [data['entropy'] for data in signature_data]
-        ax1.plot(steps, coherence, 'b-', label='Coherence')
-        ax1.plot(steps, entropy, 'r--', label='Entropy')
-        ax1.set_title('Coherence-Entropy Evolution')
+        ax1.plot(steps, coherence, 'b-', label='Coherence (Clarity)')
+        ax1.plot(steps, entropy, 'r--', label='Entropy (Complexity)')
+        ax1.set_title('Coherence-Entropy Evolution in Emotional Transition')
         ax1.set_xlabel('Transition Step')
         ax1.set_ylabel('Value')
         ax1.legend()
@@ -198,37 +200,40 @@ class QuantumSignatureAnalyzer:
         # Entanglement Evolution
         ax2 = fig.add_subplot(322)
         entanglement = [data['entanglement'] for data in signature_data]
-        ax2.plot(steps, entanglement, 'g-', linewidth=2)
-        ax2.set_title('Entanglement Evolution')
+        ax2.plot(steps, entanglement, 'g-', linewidth=2, label='Entanglement (Interdependence)')
+        ax2.set_title('Entanglement Evolution in Emotional Transition')
         ax2.set_xlabel('Transition Step')
         ax2.set_ylabel('Entanglement')
+        ax2.legend()
         ax2.grid(True)
         
         # Quantum Distinctness
         ax3 = fig.add_subplot(323)
         distinctness = [data['quantum_distinctness'] for data in signature_data]
-        ax3.plot(steps, distinctness, 'm-', linewidth=2)
-        ax3.set_title('Quantum Distinctness')
+        ax3.plot(steps, distinctness, 'm-', linewidth=2, label='Quantum Distinctness')
+        ax3.set_title('Quantum Distinctness in Emotional Transition')
         ax3.set_xlabel('Transition Step')
         ax3.set_ylabel('Distinctness')
+        ax3.legend()
         ax3.grid(True)
         
         # Interference Patterns
         ax4 = fig.add_subplot(324)
         interference = [data['interference'] for data in signature_data]
-        ax4.plot(steps, interference, 'c-', linewidth=2)
-        ax4.set_title('Interference Pattern Evolution')
+        ax4.plot(steps, interference, 'c-', linewidth=2, label='Interference (Interaction)')
+        ax4.set_title('Interference Pattern Evolution in Emotional Transition')
         ax4.set_xlabel('Transition Step')
         ax4.set_ylabel('Interference Strength')
+        ax4.legend()
         ax4.grid(True)
         
         # Correlation Analysis
         ax5 = fig.add_subplot(325)
         coherence_entropy_corr = analysis_results['correlations']['coherence_entropy']
         entanglement_interference_corr = analysis_results['correlations']['entanglement_interference']
-        ax5.plot(steps[1:], coherence_entropy_corr[1:], 'b-', label='Coherence-Entropy')
-        ax5.plot(steps[1:], entanglement_interference_corr[1:], 'r--', label='Entanglement-Interference')
-        ax5.set_title('Quantum-Inspired Correlations')
+        ax5.plot(steps[1:], coherence_entropy_corr[1:], 'b-', label='Coherence-Entropy Correlation')
+        ax5.plot(steps[1:], entanglement_interference_corr[1:], 'r--', label='Entanglement-Interference Correlation')
+        ax5.set_title('Quantum-Inspired Correlation Analysis')
         ax5.set_xlabel('Transition Step')
         ax5.set_ylabel('Correlation')
         ax5.legend()
