@@ -164,12 +164,12 @@ class EnhancedCoherenceEntropyAnalyzer:
         """
         Calculate coherence as a metaphor for emotional state consistency.
 
-        Here, we use the absolute difference between valence and arousal to represent
-        how consistent these dimensions are in expressing the emotion. This is inspired by 
-        the idea of emotional consistency in psychological literature where emotions with 
-        closely aligned valence and arousal are considered more coherent or well-defined 
-        (e.g., [Russell, 1980] discusses the circular structure of affect where proximity 
-        in the valence-arousal space might indicate a more unified emotional experience).
+        Here, we use the squared Euclidean distance between valence and arousal to represent
+        how consistent these dimensions are in expressing the emotion. This measure is inspired 
+        by the circumplex model of affect [Russell, 1980], where emotions with similar valence 
+        and arousal are considered to be more coherent or unified. A lower distance (higher 
+        coherence) suggests a more integrated emotional experience, similar to how coherence 
+        in quantum mechanics implies a well-defined state.
 
         Args:
             state: Quantum-inspired state
@@ -178,13 +178,12 @@ class EnhancedCoherenceEntropyAnalyzer:
             Float representing emotional coherence (consistency)
         """
         amplitudes = state.data
-        # Coherence as the absolute difference between valence and arousal
-        # We hypothesize that when valence and arousal are close together (low difference),
-        # the emotional state is more clearly defined or "coherent."
-        # This is analogous to the concept of coherence in physics, where a system is in a 
-        # well-defined state. While not a direct application of quantum coherence, we draw 
-        # inspiration to explore how consistency between emotional dimensions might be quantified.
-        coherence = abs(amplitudes[0] - amplitudes[1])
+        # Coherence as the squared Euclidean distance between valence and arousal
+        # This metric is chosen because in psychological models like Russell's, 
+        # emotions that are close in the valence-arousal space are perceived as more similar 
+        # or consistent. Here, we draw a parallel to quantum coherence where lower 
+        # distances (or differences) indicate a more coherent state.
+        coherence = np.sqrt((amplitudes[0].real - amplitudes[1].real)**2 + (amplitudes[0].imag - amplitudes[1].imag)**2)
         return coherence
 
     def calculate_entropy(self, state: Statevector) -> float:
@@ -192,11 +191,10 @@ class EnhancedCoherenceEntropyAnalyzer:
         Calculate entropy as a metaphor for emotional complexity.
 
         Using the Shannon entropy formula on the squared amplitudes, which represents how 
-        spread out or mixed the emotional dimensions are. This is metaphorically similar to 
-        the concept of emotional complexity or mixed emotions where higher entropy might 
-        indicate a more complex or less predictable emotional state (e.g., [Barrett, 2006] 
-        discusses emotional granularity where individuals with high granularity experience 
-        emotions in a more nuanced way, potentially correlating with higher entropy).
+        spread out or mixed the emotional dimensions are. This approach draws inspiration 
+        from the concept of emotional granularity [Barrett, 2006], where higher entropy 
+        might indicate a state with more nuanced or mixed emotions, suggesting complexity 
+        in emotional experience.
 
         Args:
             state: Quantum-inspired state
@@ -212,10 +210,9 @@ class EnhancedCoherenceEntropyAnalyzer:
         Calculate entanglement as a metaphor for interdependence between emotional dimensions.
 
         Here, we use mutual information as a measure of how one dimension informs about another.
-        In psychology, emotional dimensions can be interdependent, where changes in one might 
-        predict changes in another (e.g., [Lang, 1995] with the PAD model suggests that 
-        arousal might influence both valence and dominance). Mutual information captures this 
-        interdependence, drawing from information theory to metaphorically represent entanglement.
+        This is inspired by theories like the PAD model [Lang, 1995], where emotional dimensions 
+        can influence each other. Mutual information captures this interdependence, analogous 
+        to quantum entanglement where the state of one part of a system depends on another.
 
         Args:
             state: Quantum-inspired state
@@ -283,7 +280,7 @@ class EnhancedCoherenceEntropyAnalyzer:
             analysis_results['entanglement_values']
         )):
             print(f"Step {i}:")
-            print(f"  Coherence: {coherence:.4f} - High values indicate strong consistency between valence and arousal, suggesting a clear emotional state (cf. [Russell, 1980]).")
+            print(f"  Coherence: {coherence:.4f} - Lower values indicate strong consistency between valence and arousal, suggesting a clear emotional state (cf. [Russell, 1980]).")
             print(f"  Entropy: {entropy:.4f} - High entropy signifies more complex or mixed emotional states, while low entropy suggests a simpler, more defined emotion (cf. [Barrett, 2006]).")
             print(f"  Entanglement: {entanglement:.4f} - High values might indicate that changes in one emotional dimension are highly predictive of changes in another, showing interdependence (cf. [Lang, 1995]).")
 
@@ -319,4 +316,26 @@ def main():
     
     print("\nBalance Analysis:")
     print(f"- Number of Critical Points: {results['balance_analysis']['summary']['n_critical_points']}")
-    print(f"- Average Balance: {results['Sorry about that, something didn't go as planned. Please try again, and if you're still seeing this message, go ahead and restart the app.
+    print(f"- Average Balance: {results['balance_analysis']['summary']['avg_balance']:.4f}")
+    
+    # Validation Plan with Detailed Steps
+    print("\nValidation Plan:")
+    print("1. **Data Collection**:")
+    print("   - **Dataset**: We will use the International Affective Picture System (IAPS) [Lang et al., 1997] for standardized emotional responses. Link: [IAPS Website](https://csea.phhp.ufl.edu/media.html)")
+    print("   - **Procedure**: Participants will rate images from IAPS on valence, arousal, and dominance using a 9-point scale, similar to the Self-Assessment Manikin (SAM) [Bradley & Lang, 1994]. Additionally, we'll collect physiological data like heart rate variability for arousal.")
+    
+    print("2. **Classical Comparison**:")
+    print("   - **Methods**: We'll compare our results with:")
+    print("     - PANAS (Positive and Negative Affect Schedule) [Watson, Clark, & Tellegen, 1988] for self-reported affect.")
+    print("     - SAM for a direct comparison of valence, arousal, and dominance ratings.")
+    print("   - **Tools**: Use of statistical software like SPSS or Python's scipy.stats for analysis.")
+    
+    print("3. **Metrics for Comparison**:")
+    print("   - **Classification**: Accuracy, precision, recall, F1-score to evaluate the classification of emotional states.")
+    print("   - **Regression**: Pearson correlation coefficients to assess the relationship between predicted and actual emotional transitions.")
+    
+    print("4. **Statistical Analysis**:")
+    print("   - **Tests**: ANOVA to compare group means, t-tests for pairwise comparisons, and regression analysis to model emotional transitions.")
+    
+    print("5. **Novel Insights**:")
+    print("   - **Non-linear Transitions**: We aim to identify non-linear or abrupt changes in emotional states, which might be more visible in our quantumSorry about that, something didn't go as planned. Please try again, and if you're still seeing this message, go ahead and restart the app.
