@@ -1,9 +1,7 @@
 # QUANTUM-EMPATH (Quantum Emotional Metrics & Pattern Analysis Through Harmonic-balance)
 
 <div align="center">
-  <object type="image/svg+xml" data="assets/quantum-empath-logo.svg" width="400" height="400">
-    <img src="assets/quantum-empath-logo.svg" alt="QUANTUM-EMPATH Logo" width="400" height="400">
-  </object>
+  <img src="./assets/quantum-empath-logo.png" alt="QUANTUM-EMPATH Logo" width="400">
 </div>
 
 ## Overview
