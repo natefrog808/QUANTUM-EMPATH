@@ -4,12 +4,15 @@ from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import Statevector
 
 class QuantumEmotionProcessor:
-    """Quantum processor for emotional state transitions."""
+    """Quantum-inspired processor for emotional state transitions."""
     
     def __init__(self, n_emotion_qubits: int = 3):
         """
-        Initialize quantum emotion processor.
+        Initialize quantum-inspired emotion processor.
         
+        This class uses quantum computing metaphors to model emotional transitions, 
+        where each qubit represents a different dimension of emotion (valence, arousal, dominance).
+
         Args:
             n_emotion_qubits: Number of qubits for emotion representation
         """
@@ -26,12 +29,16 @@ class QuantumEmotionProcessor:
         steps: int = 10
     ) -> Dict[str, Any]:
         """
-        Analyze emotional transition between states.
+        Analyze emotional transition between states using quantum-inspired methods.
         
+        This method simulates an emotional journey from an initial state towards a target state,
+        influenced by contextual factors, through a quantum-inspired framework. The transition
+        is modeled by interpolating between states while considering context as a modulator.
+
         Args:
             initial_state: Initial emotional state (valence, arousal, dominance)
             target_state: Target emotional state (valence, arousal, dominance)
-            context: Contextual factors (social, environmental)
+            context: Contextual factors (social, environmental) - planned for future integration
             steps: Number of transition steps
             
         Returns:
@@ -88,8 +95,13 @@ class QuantumEmotionProcessor:
     
     def prepare_emotional_state(self, state: Tuple[float, float, float]) -> None:
         """
-        Prepare quantum circuit for emotional state.
+        Prepare quantum circuit to represent the emotional state.
         
+        Emotional states are mapped onto quantum states by normalizing the emotional 
+        parameters and applying rotation gates. This is inspired by how quantum states 
+        can represent superposition, here metaphorically representing the complexity of 
+        emotional states [Busemeyer & Bruza, 2012].
+
         Args:
             state: Emotional state parameters (valence, arousal, dominance)
         """
@@ -105,8 +117,13 @@ class QuantumEmotionProcessor:
     
     def encode_context(self, social: float, environmental: float) -> None:
         """
-        Encode contextual factors into quantum circuit.
+        Encode contextual factors into the quantum circuit.
         
+        Contextual factors are metaphorically introduced via controlled rotations, 
+        representing how social and environmental contexts might modulate emotional 
+        states, similar to how a quantum context might affect measurement outcomes 
+        [Atmanspacher & beim Graben, 2007].
+
         Args:
             social: Social context factor (-1 to 1)
             environmental: Environmental context factor (-1 to 1)
@@ -122,8 +139,13 @@ class QuantumEmotionProcessor:
         blend_factor: float
     ) -> None:
         """
-        Apply quantum operations for emotional transition.
+        Apply quantum-inspired operations for emotional transition.
         
+        This function simulates the transition by blending between the initial and 
+        target emotional states, inspired by quantum state preparation and rotation. 
+        Entangling operations are added to represent the interdependence of emotional 
+        dimensions, akin to quantum entanglement [Pothos & Busemeyer, 2013].
+
         Args:
             initial_state: Initial emotional state
             target_state: Target emotional state
@@ -145,10 +167,20 @@ class QuantumEmotionProcessor:
     
     def analyze_quantum_state(self, state: Statevector) -> Dict[str, float]:
         """
-        Analyze quantum state characteristics.
+        Analyze quantum-inspired state characteristics.
         
+        This analysis draws from quantum information theory to metaphorically describe 
+        emotional states:
+        - Purity relates to how 'pure' or 'mixed' an emotional state is, akin to emotional 
+          clarity [Salovey et al., 1995].
+        - Entropy captures emotional complexity, where higher entropy might indicate more 
+          mixed or complex emotional states [Kashdan et al., 2015].
+        - Coherence here is used metaphorically to describe the consistency or clarity of 
+          the emotional state, drawing from quantum coherence where off-diagonal elements 
+          represent superposition [Brukner & Zeilinger, 2002].
+
         Args:
-            state: Quantum state to analyze
+            state: Quantum-inspired state to analyze
             
         Returns:
             Dictionary containing state analysis metrics
@@ -175,8 +207,13 @@ class QuantumEmotionProcessor:
     
     def get_measurement_probabilities(self) -> Dict[str, float]:
         """
-        Get measurement probabilities for current state.
+        Get measurement probabilities for the current quantum-inspired state.
         
+        This method simulates the 'measurement' of an emotional state by determining 
+        the probabilities of different emotional 'configurations' or outcomes, much 
+        like quantum state measurement outcomes provide probabilities for different 
+        basis states.
+
         Returns:
             Dictionary mapping basis states to probabilities
         """
