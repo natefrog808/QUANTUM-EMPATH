@@ -4,4 +4,6 @@ from .critical_balance_analyzer import CriticalBalanceAnalyzer
 
 __all__ = [
     'EnhancedCoherenceEntropyAnalyzer',
-    'QuantumSignature
+    'QuantumSignatureAnalyzer',
+    'CriticalBalanceAnalyzer'
+]
