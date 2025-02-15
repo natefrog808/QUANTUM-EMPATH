@@ -1,0 +1,24 @@
+QUANTUM-EMPATH/
+├── src/
+│   ├── analyzers/
+│   │   ├── __init__.py
+│   │   ├── quantum_signature_analyzer.py      # QuantumSignatureAnalyzer class
+│   │   ├── coherence_entropy_analyzer.py      # EnhancedCoherenceEntropyAnalyzer class
+│   │   └── critical_balance_analyzer.py       # CriticalBalanceAnalyzer class
+│   │
+│   ├── processors/
+│   │   ├── __init__.py
+│   │   └── quantum_emotion_processor.py       # QuantumEmotionProcessor class
+│   │
+│   └── visualization/
+│       ├── __init__.py
+│       └── visualizers.py                     # Visualization functions
+│
+├── assets/
+│   └── quantum-empath-logo.svg               # Animated logo
+│
+├── examples/
+│   └── transition_analysis.py                # Example implementation
+│
+├── README.md                                 # Project documentation
+└── requirements.txt                          # Dependencies
